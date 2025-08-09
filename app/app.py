@@ -232,20 +232,14 @@ def main():
                     )
                     st.session_state.top_fit_name = top_name
 
-            # Show existing cached if it's for same top_name; otherwise generate
+            # Generate only if cache is empty or candidate changed
             if st.session_state.top_fit_summary and st.session_state.top_fit_name == top_name:
                 st.write(st.session_state.top_fit_summary)
             else:
                 _gen()
                 st.write(st.session_state.top_fit_summary or "_No summary produced._")
 
-            col1, col2 = st.columns(2)
-            with col1:
-                if st.button("Regenerate summary"):
-                    _gen()
-                    st.write(st.session_state.top_fit_summary or "_No summary produced._")
-            with col2:
-                st.caption("Summaries are generated from the JD + candidate resume.")
+            st.caption("This summary is AI-generated from the JD and candidate resume.")
 
         # Build ZIP for top-K original files
         import io, zipfile, re
