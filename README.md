@@ -106,7 +106,7 @@ OPENAI_API_KEY=sk-...           # required
 streamlit run app.py
 ```
 
-Open the local URL Streamlit prints. Paste your **JD**, upload a folder or multiple **resumes**, hit **Compute similarity**.
+Open the local URL Streamlit prints. Paste your **JD**, upload **resumes**, hit **Compute similarity**.
 
 ---
 
@@ -124,8 +124,7 @@ Open the local URL Streamlit prints. Paste your **JD**, upload a folder or multi
 We keep it short, structured, and evidence-driven:
 
 - one-line verdict,  
-- 3–5 bullets mapping **JD requirements → concrete resume evidence**,  
-- close with one risk + mitigation.
+- 2-3 bullets mapping **JD requirements → concrete resume evidence**.
 
 This is implemented in `src/fit_summary.py` and called from `app.py` for the #1 candidate.
 
@@ -141,7 +140,7 @@ This is implemented in `src/fit_summary.py` and called from `app.py` for the #1 
 
 ## Running on your own data
 
-1) Put your JD in the left panel.  
+1) Put your JD in the text panel.  
 2) Drag/drop a batch of resumes (PDF/DOCX/TXT).  
 3) Choose K (top 5/10).  
 4) Click **Compute similarity**.  
@@ -177,7 +176,7 @@ If you want even higher recall/precision, swap to a larger embedding model (cost
 
 ---
 
-## Roadmap
+## Future Enhancements
 
 - Re-rank top-N with a cross-encoder  
 - Optional skill extraction and facet filters  
