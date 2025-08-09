@@ -168,7 +168,7 @@ def main():
                 st.warning("Paste some resume text first.")
             else:
                 pasted_count = sum(1 for r in st.session_state.resumes if r["name"].startswith("Pasted_"))
-                name = f"Pasted_{pasted_count + 1}"
+                name = f"Pasted_resume{pasted_count + 1}"
                 is_dup = any(
                     r["name"].lower() == name.lower() or r.get("text", "").strip() == content
                     for r in st.session_state.resumes
@@ -209,7 +209,11 @@ def main():
         by_name = {r["name"]: r for r in st.session_state.resumes}
         top_resume = by_name.get(top_name)
 
-        st.markdown("### Why this candidate is a great fit (AI)")
+        edited_name = top_name.replace("_", " ").strip()
+        st.markdown(f"### Why **{edited_name}** is a great fit (AI)")
+
+
+        #st.markdown("### Why this candidate is a great fit (AI)")
 
         if top_resume is None:
             st.info("Couldn't find the top candidate's original resume in memory.")
