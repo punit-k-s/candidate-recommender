@@ -46,7 +46,6 @@ This mirrors "shortlist -> rank with cosine similarity -> (optionally) summarize
 
 ## Repo layout
 
-'''
 CANDIDATE-RECOMMENDER/
 │
 ├── app/
@@ -71,7 +70,6 @@ CANDIDATE-RECOMMENDER/
 ├── .gitignore
 ├── README.md
 ├── requirements.txt
-'''
 
 ---
 
