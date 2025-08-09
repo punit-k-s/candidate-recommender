@@ -68,7 +68,7 @@ CANDIDATE-RECOMMENDER/
 ├── .gitignore
 ├── README.md
 └── requirements.txt
-
+```
 
 ---
 
