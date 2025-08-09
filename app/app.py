@@ -151,10 +151,8 @@ def main():
             name = extract_name(f.name, len(st.session_state.resumes) + 1)
             # dedupe by name only (user can re-upload with a different name if needed)
             if not any(r["name"].lower() == name.lower() for r in st.session_state.resumes):
-                # NOTE: add_resume now supports data/filename (as per your updated state.py)
                 add_resume(name, text, data=file_bytes, filename=f.name)
             else:
-                # quietly skip duplicate by name
                 pass
 
     # Paste resume (form clears on submit)
