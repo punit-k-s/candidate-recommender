@@ -13,11 +13,11 @@ Built with **Python**, **Streamlit**, **FastAPI utilities**, **OpenAI `text-embe
 
 ## Why this approach?
 
-We follow the mainstream research pattern for automated resume screening: convert both the JD and resumes to **dense vector embeddings** and rank with **cosine similarity**. Transformer models and sentence embeddings (e.g., SBERT/BERT families) are a widely used foundation for this problem, consistently outperforming keyword rules and being robust to format/noise. 
+Traditional keyword-based resume screening often fails because it only checks for exact word matches, ignoring context and meaning. A candidate might be a great fit but get filtered out simply because they used a synonym or phrased a skill differently than in the job description.
 
-Recent work shows embedding-based matching aligns better with human judgments than classic ATS keyword filters; cosine similarity over resume/JD vectors is a standard scoring choice. 
+The paper Resume Screening Using Large Language Models (ICAST 2023) [1] shows that NLP and LLM-based methods outperform keyword filters by capturing the semantic meaning of skills, experiences, and requirements. In their study, they used transformer-based embeddings (e.g., BERT, RoBERTa, and Sentence-BERT) to represent both resumes and job descriptions as dense vectors, and then ranked them using similarity measures like cosine similarity. They also experimented with hybrid approaches that combine embeddings with keyword features to further improve accuracy.
 
-We specifically cite **"Resume Screening Using Large Language Models"** (ICAST 2023), which argues for **vector embeddings + LLMs** for ranking and semantic similarity search in screening pipelines - exactly what we implement here (but using OpenAI's `text-embedding-3-small` for an inexpensive, fast baseline).
+We follow the same high-level idea but with a simpler, production-friendly stack. Our system converts both the job description and resumes into dense vector embeddings using OpenAI’s text-embedding-3-small model, chosen for its balance of cost and quality, and then ranks candidates by cosine similarity. This gives us semantic matching that’s robust to wording variations, formatting noise, and missing exact keywords, while remaining fast enough for real-time use.
 
 
 ---
