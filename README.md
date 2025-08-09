@@ -188,13 +188,9 @@ If you want even higher recall/precision, swap to a larger embedding model (cost
 
 
 ## References (selected)
-
-- **Resume Shortlisting and Ranking with Transformers (SBERT)** — sentence embeddings + cosine similarity for JD/candidate ranking.  
-- **Resume Screening Using Large Language Models (ICAST 2023)** — advocates vector embeddings + LLMs; discusses similarity calculations and vector search.  
-- **Resume2Vec (Electronics 2025)** — embedding-based ATS improvements; shows benefits over keyword-based filters.
+  
+[1] **Resume Screening Using Large Language Models (ICAST 2023)** — advocates vector embeddings + LLMs; discusses similarity calculations and vector search.  
+[2] **Resume2Vec (Electronics 2025)** — embedding-based ATS improvements; shows benefits over keyword-based filters.
 
 ---
 
-### How to cite this project in your write-up
-
-> “We follow the embedding-based resume screening pipeline described in the literature—encode both resumes and the job description with transformer embeddings and rank by cosine similarity—using OpenAI’s `text-embedding-3-small` for efficiency, then optionally generate a short LLM summary for the top candidate.”
