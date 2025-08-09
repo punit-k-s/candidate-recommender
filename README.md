@@ -5,7 +5,7 @@ A lightweight resume-screening app that:
 - embeds a Job Description (JD) and a pile of resumes,
 - ranks candidates by semantic similarity,
 - shows the top-K with relevance scores,
-- and (optionally) generates a short AI *"why this person fits"* summary for the #1 ranked resume.
+- and generates a short AI *"why this person fits"* summary for the #1 ranked resume.
 
 Built with **Python**, **Streamlit**, **FastAPI utilities**, **OpenAI `text-embedding-3-small`** for embeddings, and an OpenAI chat model for the summary.
 
@@ -38,9 +38,9 @@ We specifically cite **"Resume Screening Using Large Language Models"** (ICAST 2
 2. **Embed** JD + each resume with `text-embedding-3-small`.  
 3. **Score** cosine similarity JD<->resume -> rank.  
 4. **Display** a results table (candidate, score, key metadata).  
-5. **Explain** the #1 match via a small chat-completion prompt (optional).  
+5. **Explain** the #1 match via a small chat-completion prompt.  
 
-This mirrors "shortlist -> rank with cosine similarity -> (optionally) summarize/justify" described in the literature.
+This mirrors "shortlist -> rank with cosine similarity -> summarize/justify" described in the literature.
 
 ---
 
@@ -106,7 +106,7 @@ OPENAI_API_KEY=sk-...           # required
 streamlit run app.py
 ```
 
-Open the local URL Streamlit prints. Paste your **JD**, upload a folder or multiple **resumes**, hit **Rank**.
+Open the local URL Streamlit prints. Paste your **JD**, upload a folder or multiple **resumes**, hit **Compute similarity**.
 
 ---
 
@@ -115,7 +115,7 @@ Open the local URL Streamlit prints. Paste your **JD**, upload a folder or multi
 - We embed JD and resumes with **`text-embedding-3-small`** (cheap/fast).  
 - We compute **cosine similarity** JD→resume and sort descending.  
 - We display **Top-K** with scores.  
-- For the highest scored row, you can click **Generate fit summary** — the app passes truncated JD + the candidate’s full parsed resume to a small chat prompt to produce a 120–180 word verdict + bullets + a risk/mitigation line.
+- For the highest-scored candidate, the engine automatically generates an AI fit summary after the ranked results are displayed. It uses the truncated job description and the candidate’s full parsed resume to produce a 120–180 word verdict with bullet points and a brief risk/mitigation note.
 
 ---
 
@@ -144,8 +144,8 @@ This is implemented in `src/fit_summary.py` and called from `app.py` for the #1 
 1) Put your JD in the left panel.  
 2) Drag/drop a batch of resumes (PDF/DOCX/TXT).  
 3) Choose K (top 5/10).  
-4) Click **Rank**.  
-5) Optional: click **Generate fit summary** to get the explanation for the #1 candidate.  
+4) Click **Compute similarity**.  
+5) After the ranked results appear, the app automatically generates an AI fit summary for the #1 candidate.  
 6) Click **Download top-K** to export the original files as a zip.
 
 ---

@@ -228,7 +228,7 @@ def main():
                     st.session_state.top_fit_summary = generate_fit_summary(
                         st.session_state.jd_text,
                         top_resume.get("text", ""),
-                        role_title=None,  # or extract from JD if you want
+                        role_title=None, 
                     )
                     st.session_state.top_fit_name = top_name
 
