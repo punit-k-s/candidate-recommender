@@ -186,7 +186,7 @@ If you want even higher recall/precision, swap to a larger embedding model (cost
 ---
 
 
-## References (selected)
+## References
   
 [1] **Resume Screening Using Large Language Models (ICAST 2023)** — advocates vector embeddings + LLMs; discusses similarity calculations and vector search.  
 [2] **Resume Shortlisting and Ranking with Transformers (SBERT)** — sentence embeddings + cosine similarity for JD/candidate ranking.
