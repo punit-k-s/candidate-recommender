@@ -166,18 +166,6 @@ The project targets *practical* throughput with strong semantic matching. Embedd
 
 If you want even higher recall/precision, swap to a larger embedding model (cost↑), or add **re-rank** with a cross-encoder / LLM judging pass.
 
----
-
-## Tests
-
-- Unit tests for text cleaning & cosine ranking (`src/preprocess.py`, `src/ranking.py`).  
-- Smoke test: tiny sample JD + 3 resumes → stable ordering, non-empty top-1 summary.
-
-Run:
-
-```bash
-pytest -q
-```
 
 ---
 
