@@ -24,6 +24,8 @@ from src.embeddings.openai_client import OpenAIEmbeddingClient
 from src.ranking import rank_by_cosine
 from src.utils.batching import embed_in_batches
 from src.utils.tokens import count_tokens
+from src.fit_summary import generate_fit_summary
+
 
 
 # --- Core logic --------------------------------------------------------------
@@ -198,6 +200,48 @@ def main():
         st.success("Done. Top matches below.")
         df = st.session_state.results
         st.dataframe(df, use_container_width=True)
+
+
+
+        # === Explain the #1 match ===
+        top_row = df.iloc[0]
+        top_name = str(top_row["Candidate"])
+        by_name = {r["name"]: r for r in st.session_state.resumes}
+        top_resume = by_name.get(top_name)
+
+        st.markdown("### Why this candidate is a great fit (AI)")
+
+        if top_resume is None:
+            st.info("Couldn't find the top candidate's original resume in memory.")
+        else:
+            # Cache the last summary so we don't re-call on every rerun
+            if "top_fit_summary" not in st.session_state:
+                st.session_state.top_fit_summary = None
+                st.session_state.top_fit_name = None
+
+            def _gen():
+                with st.spinner("Generating fit summary…"):
+                    st.session_state.top_fit_summary = generate_fit_summary(
+                        st.session_state.jd_text,
+                        top_resume.get("text", ""),
+                        role_title=None,  # or extract from JD if you want
+                    )
+                    st.session_state.top_fit_name = top_name
+
+            # Show existing cached if it's for same top_name; otherwise generate
+            if st.session_state.top_fit_summary and st.session_state.top_fit_name == top_name:
+                st.write(st.session_state.top_fit_summary)
+            else:
+                _gen()
+                st.write(st.session_state.top_fit_summary or "_No summary produced._")
+
+            col1, col2 = st.columns(2)
+            with col1:
+                if st.button("Regenerate summary"):
+                    _gen()
+                    st.write(st.session_state.top_fit_summary or "_No summary produced._")
+            with col2:
+                st.caption("Summaries are generated from the JD + candidate resume.")
 
         # Build ZIP for top-K original files
         import io, zipfile, re
