@@ -19,7 +19,6 @@ Recent work shows embedding-based matching aligns better with human judgments th
 
 We specifically cite **"Resume Screening Using Large Language Models"** (ICAST 2023), which argues for **vector embeddings + LLMs** for ranking and semantic similarity search in screening pipelines - exactly what we implement here (but using OpenAI's `text-embedding-3-small` for an inexpensive, fast baseline).
 
-> TL;DR: Embeddings capture the *meaning* of a candidate's skills/experience and of your JD, so we can compare them in a shared space instead of brittle keyword matches.
 
 ---
 
@@ -47,23 +46,32 @@ This mirrors "shortlist -> rank with cosine similarity -> (optionally) summarize
 
 ## Repo layout
 
-```
-candidate-recommender/
-├─ app.py                     # Streamlit UI (upload JD/resumes, run ranking, show top-K, generate summary)
-├─ requirements.txt
-├─ .env.example               # OPENAI_API_KEY etc.
-├─ src/
-│  ├─ embeddings/
-│  │  ├─ base.py              # embed_texts() using text-embedding-3-small
-│  │  └─ openai_client.py     # small OpenAI wrapper
-│  ├─ ranking.py              # cosine similarity ranking helpers
-│  ├─ preprocess.py           # PDF/DOCX/TXT to text + cleaning
-│  ├─ utils/
-│  │  ├─ tokens.py            # token counting/truncation helpers
-│  │  └─ batching.py
-│  └─ fit_summary.py          # generate_fit_summary(jd_text, resume_text, role_title?)
-└─ data/                      # (gitignored) local vectors / temp files
-```
+'''
+CANDIDATE-RECOMMENDER/
+│
+├── app/
+│   └── app.py                  # Streamlit entry point                     
+│
+├── src/
+│   ├── embeddings/
+│   │   ├── base.py
+│   │   └── openai_client.py
+│   │
+│   ├── utils/
+│   │   ├── config.py
+│   │   ├── fit_summary.py      # Generates AI fit summaries
+│   │   ├── io_utils.py
+│   │   ├── parsing.py
+│   │   ├── ranking.py
+│   │   └── state.py
+│   │
+│   └── __init__.py
+│
+├── .env.example                # Example environment variables
+├── .gitignore
+├── README.md
+├── requirements.txt
+'''
 
 ---
 
