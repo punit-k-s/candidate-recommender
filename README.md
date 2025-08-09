@@ -46,10 +46,10 @@ This mirrors "shortlist -> rank with cosine similarity -> (optionally) summarize
 
 ## Repo layout
 
+```plaintext
 CANDIDATE-RECOMMENDER/
-│
 ├── app/
-│   └── app.py                  # Streamlit entry point                     
+│   └── app.py                  # Streamlit entry point
 │
 ├── src/
 │   ├── embeddings/
@@ -63,13 +63,12 @@ CANDIDATE-RECOMMENDER/
 │   │   ├── parsing.py
 │   │   ├── ranking.py
 │   │   └── state.py
-│   │
-│   └── __init__.py
 │
 ├── .env.example                # Example environment variables
 ├── .gitignore
 ├── README.md
-├── requirements.txt
+└── requirements.txt
+
 
 ---
 
