@@ -179,7 +179,7 @@ If you want even higher recall/precision, swap to a larger embedding model (cost
 ## Future Enhancements
 
 - Re-rank top-N with a cross-encoder  
-- Optional skill extraction and facet filters  
+- Optional skill extraction and weighted facet filters  
 - Batch caching of embeddings (sqlite/vector DB) for speed  
 - Multi-JD compare / panels
 
