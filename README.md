@@ -198,11 +198,6 @@ pytest -q
 
 ---
 
-## License
-
-MIT — see `LICENSE`.
-
----
 
 ## References (selected)
 
