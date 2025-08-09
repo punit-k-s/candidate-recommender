@@ -15,7 +15,7 @@ Built with **Python**, **Streamlit**, **FastAPI utilities**, **OpenAI `text-embe
 
 Traditional keyword-based resume screening often fails because it only checks for exact word matches, ignoring context and meaning. A candidate might be a great fit but get filtered out simply because they used a synonym or phrased a skill differently than in the job description.
 
-The paper Resume Screening Using Large Language Models (ICAST 2023) [1] shows that NLP and LLM-based methods outperform keyword filters by capturing the semantic meaning of skills, experiences, and requirements. In their study, they used transformer-based embeddings (e.g., BERT, RoBERTa, and Sentence-BERT) to represent both resumes and job descriptions as dense vectors, and then ranked them using similarity measures like cosine similarity. They also experimented with hybrid approaches that combine embeddings with keyword features to further improve accuracy.
+The paper Resume Screening Using Large Language Models (ICAST 2023) [1] shows that NLP and LLM-based methods outperform keyword filters by capturing the semantic meaning of skills, experiences, and requirements. Similarly, the study Resume Shortlisting and Ranking with Transformers [2] demonstrates that transformer-based embeddings like SBERT produce more accurate candidate rankings than BERT or keyword search, thanks to their ability to encode sentence-level meaning and context.
 
 We follow the same high-level idea but with a simpler, production-friendly stack. Our system converts both the job description and resumes into dense vector embeddings using OpenAI’s text-embedding-3-small model, chosen for its balance of cost and quality, and then ranks candidates by cosine similarity. This gives us semantic matching that’s robust to wording variations, formatting noise, and missing exact keywords, while remaining fast enough for real-time use.
 
@@ -189,7 +189,7 @@ If you want even higher recall/precision, swap to a larger embedding model (cost
 ## References (selected)
   
 [1] **Resume Screening Using Large Language Models (ICAST 2023)** — advocates vector embeddings + LLMs; discusses similarity calculations and vector search.  
-[2] **Resume2Vec (Electronics 2025)** — embedding-based ATS improvements; shows benefits over keyword-based filters.
+[2] **Resume Shortlisting and Ranking with Transformers (SBERT)** — sentence embeddings + cosine similarity for JD/candidate ranking.
 
 ---
 
